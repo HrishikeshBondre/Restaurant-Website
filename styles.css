@@ -22,6 +22,8 @@ body {
     padding: 0 110px;
     height: 120px;
     background-color: #fff;
+    position: relative; /* important for stacking */
+    z-index: 10;
 }
 
 .logo {
@@ -100,7 +102,57 @@ body {
     cursor: pointer;
 }
 
-/* FRONT PAGE */
+/* HAMBURGER MENU RESPONSIVE */
+@media (max-width: 900px) {
+    .hamburger {
+        display: block;
+    }
+
+    .nav-content {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        background-color: #fff;
+        padding-bottom: 20px;
+        position: absolute; /* place above other content */
+        top: 120px;        /* below navbar */
+        left: 0;
+        z-index: 999;      /* bring to front */
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* optional shadow */
+    }
+
+    .nav-content.show {
+        display: flex;
+    }
+
+    .navmenu {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        text-align: center;
+        background-color: #fff;
+    }
+
+    .navmenu a {
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .icons-buttons {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        align-items: center;
+        padding-top: 10px;
+    }
+
+    .contact-button {
+        width: 140px;
+    }
+}
+
+
 #front-page {
     display: flex;
     justify-content: space-between;
@@ -114,36 +166,24 @@ body {
     width: 47%;
 }
 
-.info1,
-.info2 {
+.info1, .info2 {
     font-size: 50px;
     font-weight: 700;
     color: black;
+    margin: 0;
 }
 
-.info3,
-.info4 {
+.info3, .info4 {
     font-size: 18px;
     color: black;
+    margin: 0;
 }
 
-.info1 {
-    margin-top: 70px;
-    height: 80px;
-}
-
-.info2 {
-    height: 70px;
-}
-
-.info3 {
-    margin-top: 35px;
-    height: 35px;
-}
-
-.info4 {
-    height: 40px;
-}
+/* Remove fixed heights for spacing control */
+.info1 { margin-top: 70px; }
+.info2 { margin-top: 10px; }
+.info3 { margin-top: 15px; }
+.info4 { margin-top: 10px; }
 
 .info5 {
     display: flex;
@@ -151,6 +191,7 @@ body {
     margin-top: 40px;
     flex-wrap: wrap;
     gap: 10px;
+    justify-content: flex-start; /* default left-aligned for large screens */
 }
 
 .order-button {
@@ -181,6 +222,10 @@ body {
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
+.info5 a {
+    text-decoration: none;
+}
+
 .model {
     width: 53%;
     display: flex;
@@ -204,14 +249,113 @@ body {
     border-radius: 50%;
 }
 
-/* CATEGORIES */
+/* RESPONSIVE STYLING */
+
+/* Tablet and medium screens */
+@media (max-width: 1100px) {
+    #front-page {
+        flex-direction: column-reverse;
+        text-align: center;
+        height: auto;
+        padding: 0 40px;
+    }
+
+    .info, .model {
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .bigcircle {
+        width: 350px;
+        height: 350px;
+    }
+
+    .info1, .info2 {
+        font-size: 40px;
+        margin-top: 20px;  /* reduced spacing */
+    }
+
+    .info3, .info4 {
+        font-size: 16px;
+        margin-top: 10px;  /* reduced spacing */
+    }
+
+    /* CENTER BUTTON + WATCH VIDEO */
+    .info5 {
+        justify-content: center; /* center horizontally */
+    }
+
+    .order-button {
+        width: 120px;
+        font-size: 15px;
+    }
+}
+
+/* Small tablets and large phones */
+@media (max-width: 700px) {
+    .bigcircle {
+        width: 300px;
+        height: 300px;
+    }
+
+    .info1, .info2 {
+        font-size: 32px;
+        margin-top: 15px;
+    }
+
+    .info3, .info4 {
+        font-size: 14px;
+        margin-top: 8px;
+    }
+
+    .order-button {
+        width: 110px;
+        font-size: 14px;
+    }
+
+    .circle {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Mobile phones */
+@media (max-width: 500px) {
+    .bigcircle {
+        width: 250px;
+        height: 250px;
+    }
+
+    .info1, .info2 {
+        font-size: 28px;
+        margin-top: 10px;
+    }
+
+    .info3, .info4 {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    .order-button {
+        width: 100px;
+        font-size: 13px;
+    }
+
+    .circle {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+
+/* CATEGORIES SECTION */
 .catagories {
     margin: 0 auto;
     padding: 0 110px;
+    text-align: center;
 }
 
 .heading1 {
-    text-align: center;
     color: #FF6868;
     font-family: 'Times New Roman', Times, serif;
     margin-top: 80px;
@@ -219,7 +363,6 @@ body {
 }
 
 .heading2 {
-    text-align: center;
     font-size: 35px;
     font-weight: 700;
     margin-bottom: 20px;
@@ -232,6 +375,7 @@ body {
     gap: 20px;
 }
 
+/* CATEGORY BOXES */
 .box1,
 .box2,
 .box3,
@@ -241,9 +385,14 @@ body {
     border-radius: 10px;
     margin-top: 50px;
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* vertical centering */
+    align-items: center;     /* horizontal centering */
     text-align: center;
 }
 
+/* CIRCLES */
 .cir1,
 .cir2,
 .cir3,
@@ -252,10 +401,10 @@ body {
     height: 100px;
     border-radius: 50%;
     background-color: #C1F1C6;
-    margin: 0 auto 20px auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 15px;
 }
 
 .burger,
@@ -266,74 +415,34 @@ body {
     height: auto;
 }
 
-.dishname,
-.quantity {
-    width: 100%;
+/* DISH NAME & QUANTITY */
+.dishname p,
+.quantity p {
+    margin: 5px 0;
 }
 
-.d1,
-.d2,
-.d3,
-.d4 {
+.d1, .d2, .d3, .d4 {
     font-size: 20px;
     color: black;
     font-weight: 400;
 }
 
-.q1,
-.q2,
-.q3,
-.q4 {
+.q1, .q2, .q3, .q4 {
     font-size: 15px;
     color: gray;
     font-weight: 200;
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE STYLING */
 @media (max-width: 1100px) {
-
-    #front-page,
     .catagories {
         padding: 0 20px;
     }
 }
 
 @media (max-width: 900px) {
-    #front-page {
-        flex-direction: column-reverse;
-        height: auto;
-        text-align: center;
-    }
-
-    .info,
-    .model {
-        width: 100%;
-        margin: 0;
-    }
-
-    .info1,
-    .info2 {
-        font-size: 40px;
-    }
-
-    .info3,
-    .info4 {
-        font-size: 16px;
-    }
-
-    .bigcircle {
-        width: 300px;
-        height: 300px;
-        margin: 0 auto 20px;
-    }
-
-    .pic {
-        width: 90%;
-    }
-
     .boxes {
         justify-content: center;
-        gap: 20px;
     }
 
     .box1,
@@ -360,27 +469,6 @@ body {
 }
 
 @media (max-width: 500px) {
-
-    .info1,
-    .info2 {
-        font-size: 28px;
-    }
-
-    .info3,
-    .info4 {
-        font-size: 14px;
-    }
-
-    .bigcircle {
-        width: 250px;
-        height: 250px;
-    }
-
-    .order-button {
-        width: 120px;
-        font-size: 15px;
-    }
-
     .box1,
     .box2,
     .box3,
@@ -402,51 +490,17 @@ body {
     .juice {
         width: 80%;
     }
-}
 
-/* HAMBURGER MENU */
-@media (max-width: 900px) {
-    .hamburger {
-        display: block;
+    .d1, .d2, .d3, .d4 {
+        font-size: 18px;
     }
 
-    .nav-content {
-        display: none;
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-        background-color: #fff;
-        padding-bottom: 20px;
-    }
-
-    .nav-content.show {
-        display: flex;
-    }
-
-    .navmenu {
-        flex-direction: column;
-        gap: 10px;
-        width: 100%;
-        text-align: center;
-    }
-
-    .navmenu a {
-        padding: 10px 0;
-        border-bottom: 1px solid #eee;
-    }
-
-    .icons-buttons {
-        flex-direction: column;
-        gap: 10px;
-        width: 100%;
-        align-items: center;
-        padding-top: 10px;
-    }
-
-    .contact-button {
-        width: 140px;
+    .q1, .q2, .q3, .q4 {
+        font-size: 14px;
     }
 }
+
+
 
 .special {
     margin: 50px auto;
@@ -580,7 +634,19 @@ body {
     .typesofdishes {
         justify-content: center;
     }
+
+    .sname3{
+        margin-left: 20px;
+    }
 }
+
+@media (max-width: 980px) {
+    .typesofdishes {
+        justify-content: center;
+    }
+}
+
+
 
 @media (max-width: 700px) {
     .special {
@@ -704,6 +770,18 @@ body {
 
     .para {
         font-size: 16px;
+        margin-left: 40px;
+        margin-right: 50px;
+
+    }
+    .c6{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .c6 p{
+        text-align: center;
     }
 }
 
@@ -838,7 +916,7 @@ body {
 .bx3img {
     height: 55px;
     width: 55px;
-    background-image: url(online.png); 
+    background-image: url(onlineorder.png); 
     background-size: cover;
 }
 
@@ -886,7 +964,7 @@ body {
 @media (max-width: 700px) {
     .bx1, .bx2, .bx3, .bx4 {
         flex: 1 1 80%;
-        max-width: none;
+        max-width: 500;
     }
     .para2 {
         font-size: 16px;
@@ -912,11 +990,11 @@ body {
     }
 }
 #footer {
-    margin-left: 40px;
-    margin-right: 40px;
+    width: 100%;
+    padding-left: 40px;
+    padding-right: 40px;
     margin-top: 50px;
     background-color: #f8f8f8;
-    padding: 20px 0;
     font-family: Arial, sans-serif;
 }
 
@@ -1050,10 +1128,6 @@ body {
 }
 
 @media (max-width: 768px) {
-    #footer {
-        margin-left: 20px;
-        margin-right: 20px;
-    }
     .links a {
         font-size: 13px;
         line-height: 1.3;
@@ -1067,16 +1141,27 @@ body {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 500px) {
     .frow1 {
         flex-direction: column;
-        align-items: flex-start;
-    }
-    .co1, .co2, .co3, .co4 {
-        width: 100%;
-    }
-    .logos {
+        display: flex;
+        align-items: center;
         justify-content: center;
-        gap: 10px;
     }
+
+    .co1, .co2, .co3, .co4{
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .links{
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+   
 }
+
