@@ -438,7 +438,17 @@ body {
     .catagories {
         padding: 0 20px;
     }
+    .boxes {
+        justify-content: center;
+    }
 }
+
+@media (max-width: 1200px) {
+    .boxes {
+        justify-content: center;
+    }
+}
+
 
 @media (max-width: 900px) {
     .boxes {
@@ -1164,4 +1174,5 @@ body {
     }
    
 }
+
 
